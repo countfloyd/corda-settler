@@ -68,6 +68,6 @@ class MakeSWIFTPayment<T : TokenType>(
         val paymentResponse = createAndSignAndSubmitPayment(obligation, amount)
         val paymentReference = paymentResponse.uetr
         sleep(Duration.ofMillis(1))
-        return SwiftPayment(paymentReference, amount as Amount<TokenType>, PaymentStatus.SENT) as Payment<T>
+        return SwiftPayment(paymentReference, amount, PaymentStatus.SENT)
     }
 }

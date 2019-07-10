@@ -69,7 +69,7 @@ class XRPObligationTestsWithOracle : AbstractObligationTestsWithOracle<XrpSettle
             addOutputState(obligationWithFakePayment, ObligationContract.CONTRACT_REF)
             addCommand(ObligationCommands.AddPayment("wrong reference"), B.legalIdentity().owningKey)
         })
-        B.startFlow(FinalityFlow(stx)).getOrThrow()
+        B.startFlow(FinalityFlow(stx, sessions = setOf())).getOrThrow()
 
         // Wait for the updates on both nodes.
         assertFailsWith<IllegalStateException>("Payment wasn't made by the deadline.") {
